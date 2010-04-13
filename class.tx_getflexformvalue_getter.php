@@ -92,7 +92,7 @@ class tx_getflexformvalue_getter {
 		return $value;
 	}
 
-	public function getValueFromField($dbTable, $dbField, $dbUid, $langDisable, $langChildren, $fieldName, $sheet = 'sDEF', $languageIndex = '', $valueIndex = '') {
+	public static function getValueFromField($dbTable, $dbField, $dbUid, $langDisable, $langChildren, $fieldName, $sheet = 'sDEF', $languageIndex = '', $valueIndex = '') {
 		$value = '';
 			// Get the FlexForm field's content from the database
 			// NOTE: this may throw an exception, but we let it bubble up
@@ -188,7 +188,7 @@ class tx_getflexformvalue_getter {
 	 * @param	string	$valueIndex: name of the index attribute that identifies the desired value node
 	 * @return	string	The value found
 	 */
-	public function extractValueFromFlexFormField($flexFormField, $fieldName, $sheet = 'sDEF', $languageIndex = 'lDEF', $valueIndex = 'vDEF') {
+	public static function extractValueFromFlexFormField($flexFormField, $fieldName, $sheet = 'sDEF', $languageIndex = 'lDEF', $valueIndex = 'vDEF') {
 //t3lib_div::debug(func_get_args());
 		$value = '';
 		/**
@@ -226,7 +226,7 @@ class tx_getflexformvalue_getter {
 	 * @param	integer	$dbUid: primary key of the record to fetch
 	 * @return	string	content of the chosen database field
 	 */
-	public function getFlexFormField($dbTable, $dbField, $dbUid) {
+	public static function getFlexFormField($dbTable, $dbField, $dbUid) {
 		$flexFormField = '';
 			// Sanitize input
 		$field = $GLOBALS['TYPO3_DB']->quoteStr($dbField, $dbTable);
@@ -256,7 +256,7 @@ class tx_getflexformvalue_getter {
 
 			// No record was found, throw an exception
 		} else {
-			$message = 'No record found with query: ' . $GLOBALS['TYPO3_DB']->SELECTquery($field, $table, 'uid = ' . $uid);;
+			$message = 'No record found with query: ' . $GLOBALS['TYPO3_DB']->SELECTquery($field, $table, 'uid = ' . $uid);
 			throw new Exception($message, 1270648716);
 		}
 		return $flexFormField;
